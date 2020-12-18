@@ -88,7 +88,7 @@ func TestRepository_Find(t *testing.T) {
 		assert.Equal(t, entity.UUID, res.UUID)
 		assert.Equal(t, entity.PhoneNumber, res.PhoneNumber)
 		assert.Equal(t, entity.PinCode, res.PinCode)
-		assert.Equal(t, entity.ExpiresAt.UnixNano(), res.ExpiresAt.UnixNano())
+		assert.True(t, entity.ExpiresAt.Equal(res.ExpiresAt))
 	})
 
 	t.Run("Find After Expire", func(t *testing.T) {
