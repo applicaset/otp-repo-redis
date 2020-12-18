@@ -29,7 +29,7 @@ func (repo *repository) Create(ctx context.Context, entity otp_svc.Entity) error
 		return errors.Wrap(err, "error on marshal entity")
 	}
 
-	err = repo.client.SetEX(ctx, entity.UUID, b, entity.ExpiresAt.Sub(time.Now())).Err()
+	err = repo.client.SetEX(ctx, entity.UUID, b, time.Until(entity.ExpiresAt)).Err()
 	if err != nil {
 		return errors.Wrap(err, "error on set key")
 	}
