@@ -1,4 +1,4 @@
-package otp_repo_redis
+package otpreporedis
 
 import (
 	"context"
@@ -15,6 +15,7 @@ type repository struct {
 
 func (repo *repository) Create(ctx context.Context, entity otp_svc.Entity) error {
 	res := repo.client.Get(ctx, entity.UUID)
+
 	err := res.Err()
 	if err == nil {
 		return errors.Errorf("otp with id '%s' already exists", entity.UUID)
@@ -39,6 +40,7 @@ func (repo *repository) Create(ctx context.Context, entity otp_svc.Entity) error
 
 func (repo *repository) Find(ctx context.Context, otpUUID string) (*otp_svc.Entity, error) {
 	res := repo.client.Get(ctx, otpUUID)
+
 	err := res.Err()
 	if err != nil {
 		if errors.Is(err, redis.Nil) {

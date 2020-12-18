@@ -1,4 +1,4 @@
-package otp_repo_redis_test
+package otpreporedis_test
 
 import (
 	"context"
@@ -23,7 +23,7 @@ func TestRepository_Create(t *testing.T) {
 		Addr: mr.Addr(),
 	})
 
-	repo := otp_repo_redis.New(rc)
+	repo := otpreporedis.New(rc)
 
 	t.Run("Create New", func(t *testing.T) {
 		entity := otp_svc.Entity{
@@ -63,7 +63,7 @@ func TestRepository_Find(t *testing.T) {
 		Addr: mr.Addr(),
 	})
 
-	repo := otp_repo_redis.New(rc)
+	repo := otpreporedis.New(rc)
 
 	t.Run("Find Unknown", func(t *testing.T) {
 		res, err := repo.Find(ctx, uuid.New().String())
