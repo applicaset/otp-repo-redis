@@ -26,7 +26,7 @@ func TestRepository_Create(t *testing.T) {
 	repo := otpreporedis.New(rc)
 
 	t.Run("Create New", func(t *testing.T) {
-		entity := otp_svc.Entity{
+		entity := otpsvc.Entity{
 			UUID:        uuid.New().String(),
 			PhoneNumber: "+1234567890",
 			PinCode:     "1234",
@@ -38,7 +38,7 @@ func TestRepository_Create(t *testing.T) {
 	})
 
 	t.Run("Create Duplicate", func(t *testing.T) {
-		entity := otp_svc.Entity{
+		entity := otpsvc.Entity{
 			UUID:        uuid.New().String(),
 			PhoneNumber: "+1234567890",
 			PinCode:     "1234",
@@ -72,7 +72,7 @@ func TestRepository_Find(t *testing.T) {
 	})
 
 	t.Run("Find Created", func(t *testing.T) {
-		entity := otp_svc.Entity{
+		entity := otpsvc.Entity{
 			UUID:        uuid.New().String(),
 			PhoneNumber: "+1234567890",
 			PinCode:     "1234",
@@ -92,7 +92,7 @@ func TestRepository_Find(t *testing.T) {
 	})
 
 	t.Run("Find After Expire", func(t *testing.T) {
-		entity := otp_svc.Entity{
+		entity := otpsvc.Entity{
 			UUID:        uuid.New().String(),
 			PhoneNumber: "+1234567890",
 			PinCode:     "1234",

@@ -13,7 +13,7 @@ type repository struct {
 	client redis.Cmdable
 }
 
-func (repo *repository) Create(ctx context.Context, entity otp_svc.Entity) error {
+func (repo *repository) Create(ctx context.Context, entity otpsvc.Entity) error {
 	res := repo.client.Get(ctx, entity.UUID)
 
 	err := res.Err()
@@ -38,7 +38,7 @@ func (repo *repository) Create(ctx context.Context, entity otp_svc.Entity) error
 	return nil
 }
 
-func (repo *repository) Find(ctx context.Context, otpUUID string) (*otp_svc.Entity, error) {
+func (repo *repository) Find(ctx context.Context, otpUUID string) (*otpsvc.Entity, error) {
 	res := repo.client.Get(ctx, otpUUID)
 
 	err := res.Err()
@@ -57,7 +57,7 @@ func (repo *repository) Find(ctx context.Context, otpUUID string) (*otp_svc.Enti
 		return nil, errors.Wrap(err, "error on scan response")
 	}
 
-	var rsp otp_svc.Entity
+	var rsp otpsvc.Entity
 
 	err = json.Unmarshal(b, &rsp)
 	if err != nil {
@@ -67,7 +67,7 @@ func (repo *repository) Find(ctx context.Context, otpUUID string) (*otp_svc.Enti
 	return &rsp, nil
 }
 
-func New(client redis.Cmdable) otp_svc.Repository {
+func New(client redis.Cmdable) otpsvc.Repository {
 	repo := repository{
 		client: client,
 	}
